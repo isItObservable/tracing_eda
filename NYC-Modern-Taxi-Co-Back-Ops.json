@@ -1,0 +1,423 @@
+{
+  "createdTime": 1593615283263,
+  "updatedTime": 1594825597378,
+  "createdBy": "mc1va1xb",
+  "changedBy": "2ko4lk2qe58f",
+  "id": "6685wonq399",
+  "name": "NYC Modern Taxi Co - Ops",
+  "topicDomain": "taxinyc/ops",
+  "description": "<p>Showcases real-time mobile, IoT and microservices (SCS)</p>",
+  "enforceUniqueTopicNames": true,
+  "type": "applicationDomain",
+  "events": [
+    {
+      "createdTime": 1594818964635,
+      "updatedTime": 1595529166678,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48waip",
+      "name": "DriverUpserted",
+      "version": "0.0.1",
+      "shared": true,
+      "topicName": "taxinyc/ops/driver/upserted/v1/${upsert_source}/${account_status}/${driver_id}",
+      "description": "<p>Full details (not delta) of driver that is added/deleted/modified</p>",
+      "schemaId": "b4vm9uoavxb",
+      "schemaVersionId": null,
+      "applicationDomainId": "6685wonq399",
+      "producedApplicationIds": [
+        "9hbwf48vx3n",
+        "9hbwf48vxf1",
+        "9hbwf48vy9v",
+        "b4vm9uoaakz"
+      ],
+      "consumedApplicationIds": [
+        "9hbwf48vxf1",
+        "9hbwf48w4x1",
+        "b4vm9uoaakz",
+        "b4vm9uoad5r"
+      ],
+      "revisionNumber": 8,
+      "brokerType": "solace",
+      "type": "event"
+    },
+    {
+      "createdTime": 1593615283291,
+      "updatedTime": 1594824943036,
+      "createdBy": "mc1va1xb",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "6685wonq3ax",
+      "name": "MonitoringUpdated",
+      "version": "0.0.1",
+      "shared": false,
+      "topicName": "taxinyc/ops/monitoring/updated/v1/${monitoring_metric}/${monitoring_metric_value}",
+      "description": "<p><span style=\"color: rgb(0, 0, 0);\">This event contains the average cost of rides over a specified duration</span></p>",
+      "schemaId": "6685wonq39t",
+      "schemaVersionId": null,
+      "applicationDomainId": "6685wonq399",
+      "producedApplicationIds": [
+        "6685wonq3cb"
+      ],
+      "consumedApplicationIds": [
+        "6685wonq3c1"
+      ],
+      "revisionNumber": 5,
+      "brokerType": "solace",
+      "type": "event"
+    },
+    {
+      "createdTime": 1594820786480,
+      "updatedTime": 1595526650555,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48wb3j",
+      "name": "PassengerUpserted",
+      "version": "0.0.1",
+      "shared": true,
+      "topicName": "taxinyc/ops/passenger/upserted/v1/${upsert_source}/${account_status}/${passenger_id}",
+      "description": "",
+      "schemaId": null,
+      "schemaVersionId": null,
+      "applicationDomainId": "6685wonq399",
+      "producedApplicationIds": [
+        "9hbwf48vxgz"
+      ],
+      "consumedApplicationIds": [
+        "9hbwf48vx8d",
+        "9hbwf48w4x1"
+      ],
+      "revisionNumber": 6,
+      "brokerType": "solace",
+      "type": "event"
+    },
+    {
+      "createdTime": 1594402281619,
+      "updatedTime": 1595526775906,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48vy5f",
+      "name": "PaymentCharged",
+      "version": "0.0.1",
+      "shared": true,
+      "topicName": "taxinyc/ops/payment/charged/v1/${payment_status}/${driver_id}/${passenger_id}",
+      "description": "",
+      "schemaId": null,
+      "schemaVersionId": null,
+      "applicationDomainId": "6685wonq399",
+      "producedApplicationIds": [
+        "9hbwf48vy4l"
+      ],
+      "consumedApplicationIds": [
+        "9hbwf48vx8d",
+        "9hbwf48vxgz",
+        "9hbwf48vy8h",
+        "9hbwf48w4x1"
+      ],
+      "revisionNumber": 7,
+      "brokerType": "solace",
+      "type": "event"
+    },
+    {
+      "createdTime": 1594393773335,
+      "updatedTime": 1595519095092,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "67tr8tku41",
+      "id": "9hbwf48vxkl",
+      "name": "RideCalled",
+      "version": "0.0.1",
+      "shared": true,
+      "topicName": "taxinyc/ops/ride/called/v1/${car_class}/${passenger_id}/${pick_up_longitude}/${pick_up_latitude}",
+      "description": "<p>Similar schema to ride update, but does not include driver information</p><p><br></p><p>Schema includes</p><p><br></p><p>ridecalled_id (GUID)</p><p>rider_object</p><p>number of passengers (int)</p><p>drop off coordinates (lat, lon)</p><p>pick up coordinates (lat, lon)</p><p>car_class</p><p><br></p><p><br></p><p>rider_object</p><ul><li>rider_id (guid)</li><li>first_name (string)</li><li>last_name (string)</li><li>rating (float)</li></ul><p><br></p>",
+      "schemaId": null,
+      "schemaVersionId": null,
+      "applicationDomainId": "6685wonq399",
+      "producedApplicationIds": [
+        "9hbwf48vxgz"
+      ],
+      "consumedApplicationIds": [
+        "9hbwf48vx8d",
+        "9hbwf48vy6t",
+        "9hbwf48vy9v",
+        "9hbwf48w4x1"
+      ],
+      "revisionNumber": 12,
+      "brokerType": "solace",
+      "type": "event"
+    },
+    {
+      "createdTime": 1593615283291,
+      "updatedTime": 1596043635008,
+      "createdBy": "mc1va1xb",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "6685wonq3b7",
+      "name": "RideUpdated",
+      "version": "0.0.1",
+      "shared": true,
+      "topicName": "taxinyc/ops/ride/updated/v1/${ride_status}/${driver_id}/${passenger_id}/${current_longitude}/${current_latitude}",
+      "description": "<p>This needs to be updated to include Driver object and Rider Object</p><p><br></p><p>Driver Object</p><ul><li>driver_id</li><li>first_name</li><li>last_name</li><li>rating</li><li>car_class</li></ul><p><br></p><p>rider_object</p><ul><li>rider_id (guid)</li><li>first_name (string)</li><li>last_name (string)</li><li>rating (float)</li></ul><p><br></p>",
+      "schemaId": "csfwuxmuv03",
+      "schemaVersionId": null,
+      "applicationDomainId": "6685wonq399",
+      "producedApplicationIds": [
+        "6685wonq3cl",
+        "9hbwf48vy6t",
+        "9hbwf48vy9v"
+      ],
+      "consumedApplicationIds": [
+        "6685wonq3cb",
+        "9hbwf48vx2t",
+        "9hbwf48vx8d",
+        "9hbwf48vxgz",
+        "9hbwf48vy4l",
+        "9hbwf48w4x1"
+      ],
+      "revisionNumber": 17,
+      "brokerType": "solace",
+      "type": "event"
+    }
+  ],
+  "schemas": [
+    {
+      "createdTime": 1593615283280,
+      "updatedTime": 1593615283280,
+      "createdBy": "mc1va1xb",
+      "changedBy": "mc1va1xb",
+      "id": "6685wonq39t",
+      "name": "RideAveragePayload",
+      "shared": false,
+      "description": "<p><span style=\"color: rgb(0, 0, 0);\">Event Payload which contains average meter readings, average passenger counts, and the number of rides in a given window duration.</span></p>",
+      "contentType": "JSON",
+      "content": "{\n  \"$schema\": \"http://json-schema.org/draft-07/schema\",\n  \"$id\": \"http://example.com/example.json\",\n  \"type\": \"object\",\n  \"title\": \"The root schema\",\n  \"description\": \"The root schema comprises the entire JSON document.\",\n  \"default\": {},\n  \"examples\": [\n    {\n      \"timestamp\": \"2020-06-04T20:09:59.99832-04:00\",\n      \"avg_meter_reading\": 21.615217,\n      \"avg_passenger_count\": 1.5,\n      \"window_duration_sec\": 300,\n      \"window_ride_count\": 5\n    }\n  ],\n  \"required\": [\n    \"timestamp\",\n    \"avg_meter_reading\",\n    \"avg_passenger_count\",\n    \"window_duration_sec\",\n    \"window_ride_count\"\n  ],\n  \"additionalProperties\": true,\n  \"properties\": {\n    \"timestamp\": {\n      \"$id\": \"#/properties/timestamp\",\n      \"type\": \"string\",\n      \"title\": \"The timestamp schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": \"\",\n      \"examples\": [\n        \"2020-06-04T20:09:59.99832-04:00\"\n      ]\n    },\n    \"avg_meter_reading\": {\n      \"$id\": \"#/properties/avg_meter_reading\",\n      \"type\": \"number\",\n      \"title\": \"The avg_meter_reading schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        21.615217\n      ]\n    },\n    \"avg_passenger_count\": {\n      \"$id\": \"#/properties/avg_passenger_count\",\n      \"type\": \"number\",\n      \"title\": \"The avg_passenger_count schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        1.5\n      ]\n    },\n    \"window_duration_sec\": {\n      \"$id\": \"#/properties/window_duration_sec\",\n      \"type\": \"integer\",\n      \"title\": \"The window_duration_sec schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        300\n      ]\n    },\n    \"window_ride_count\": {\n      \"$id\": \"#/properties/window_ride_count\",\n      \"type\": \"integer\",\n      \"title\": \"The window_ride_count schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        5\n      ]\n    }\n  }\n}",
+      "eventIds": [
+        "6685wonq3ax"
+      ],
+      "applicationDomainId": "6685wonq399",
+      "revisionNumber": 1,
+      "versions": [],
+      "type": "schema"
+    },
+    {
+      "createdTime": 1596043529279,
+      "updatedTime": 1596720360337,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "67tr8tku41",
+      "id": "csfwuxmuv03",
+      "name": "RideUpdated",
+      "shared": true,
+      "description": "",
+      "contentType": "JSON",
+      "content": "{\n  \"$schema\": \"http://json-schema.org/draft-07/schema\",\n  \"$id\": \"http://example.com/example.json\",\n  \"type\": \"object\",\n  \"title\": \"The root schema\",\n  \"description\": \"The root schema comprises the entire JSON document.\",\n  \"default\": {},\n  \"examples\": [\n    {\n      \"ride_id\": \"545496 c5 - a334 - 4344 - 9662 - efde68c0b98a\",\n      \"point_idx\": 107,\n      \"latitude\": 40.75473,\n      \"longitude\": -73.98385,\n      \"heading\": 111,\n      \"speed\": 8,\n      \"timestamp\": \"2020 - 06 - 03 T16: 51: 47.29612 - 04:00\",\n      \"meter_reading\": 2.4375222,\n      \"meter_increment\": 0.02278058,\n      \"ride_status\": \"enroute\",\n      \"passenger_count\": 1,\n      \"driver\": {\n        \"driver_id\": 1234132,\n        \"first_name\": \"Frank\",\n        \"last_name\": \"Smith\",\n        \"rating\": 4,\n        \"car_class\": \"SUV\"\n      },\n      \"passenger\": {\n        \"passenger_id\": 2345243,\n        \"first_name\": \"Jesse\",\n        \"last_name\": \"Menning\",\n        \"rating\": 2\n      }\n    }\n  ],\n  \"properties\": {\n    \"ride_id\": {\n      \"$id\": \"#/properties/ride_id\",\n      \"type\": \"string\",\n      \"title\": \"The ride_id schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": \"\",\n      \"examples\": [\n        \"545496 c5 - a334 - 4344 - 9662 - efde68c0b98a\"\n      ]\n    },\n    \"point_idx\": {\n      \"$id\": \"#/properties/point_idx\",\n      \"type\": \"integer\",\n      \"title\": \"The point_idx schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        107\n      ]\n    },\n    \"latitude\": {\n      \"$id\": \"#/properties/latitude\",\n      \"type\": \"number\",\n      \"title\": \"The latitude schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        40.75473\n      ]\n    },\n    \"longitude\": {\n      \"$id\": \"#/properties/longitude\",\n      \"type\": \"number\",\n      \"title\": \"The longitude schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        -73.98385\n      ]\n    },\n    \"heading\": {\n      \"$id\": \"#/properties/heading\",\n      \"type\": \"integer\",\n      \"title\": \"The heading schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        111\n      ]\n    },\n    \"speed\": {\n      \"$id\": \"#/properties/speed\",\n      \"type\": \"integer\",\n      \"title\": \"The speed schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        8\n      ]\n    },\n    \"timestamp\": {\n      \"$id\": \"#/properties/timestamp\",\n      \"type\": \"string\",\n      \"title\": \"The timestamp schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": \"\",\n      \"examples\": [\n        \"2020 - 06 - 03 T16: 51: 47.29612 - 04:00\"\n      ]\n    },\n    \"meter_reading\": {\n      \"$id\": \"#/properties/meter_reading\",\n      \"type\": \"number\",\n      \"title\": \"The meter_reading schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        2.4375222\n      ]\n    },\n    \"meter_increment\": {\n      \"$id\": \"#/properties/meter_increment\",\n      \"type\": \"number\",\n      \"title\": \"The meter_increment schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        0.02278058\n      ]\n    },\n    \"ride_status\": {\n      \"$id\": \"#/properties/ride_status\",\n      \"type\": \"string\",\n      \"title\": \"The ride_status schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": \"\",\n      \"examples\": [\n        \"enroute\"\n      ]\n    },\n    \"passenger_count\": {\n      \"$id\": \"#/properties/passenger_count\",\n      \"type\": \"integer\",\n      \"title\": \"The passenger_count schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        1\n      ]\n    },\n    \"driver\": {\n      \"$id\": \"#/properties/driver\",\n      \"type\": \"object\",\n      \"title\": \"The driver schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": {},\n      \"examples\": [\n        {\n          \"driver_id\": 1234132,\n          \"first_name\": \"Frank\",\n          \"last_name\": \"Smith\",\n          \"rating\": 4,\n          \"car_class\": \"SUV\"\n        }\n      ],\n      \"required\": [\n        \"driver_id\",\n        \"first_name\",\n        \"last_name\",\n        \"rating\",\n        \"car_class\"\n      ],\n      \"properties\": {\n        \"driver_id\": {\n          \"$id\": \"#/properties/driver/properties/driver_id\",\n          \"type\": \"integer\",\n          \"title\": \"The driver_id schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": 0,\n          \"examples\": [\n            1234132\n          ]\n        },\n        \"first_name\": {\n          \"$id\": \"#/properties/driver/properties/first_name\",\n          \"type\": \"string\",\n          \"title\": \"The first_name schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"Frank\"\n          ]\n        },\n        \"last_name\": {\n          \"$id\": \"#/properties/driver/properties/last_name\",\n          \"type\": \"string\",\n          \"title\": \"The last_name schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"Smith\"\n          ]\n        },\n        \"rating\": {\n          \"$id\": \"#/properties/driver/properties/rating\",\n          \"type\": \"integer\",\n          \"title\": \"The rating schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": 0,\n          \"examples\": [\n            4\n          ]\n        },\n        \"car_class\": {\n          \"$id\": \"#/properties/driver/properties/car_class\",\n          \"type\": \"string\",\n          \"title\": \"The car_class schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"SUV\"\n          ]\n        }\n      },\n      \"additionalProperties\": true\n    },\n    \"passenger\": {\n      \"$id\": \"#/properties/passenger\",\n      \"type\": \"object\",\n      \"title\": \"The passenger schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": {},\n      \"examples\": [\n        {\n          \"rider_id\": 2345243,\n          \"first_name\": \"Jesse\",\n          \"last_name\": \"Menning\",\n          \"rating\": 2\n        }\n      ],\n      \"required\": [\n        \"rider_id\",\n        \"first_name\",\n        \"last_name\",\n        \"rating\"\n      ],\n      \"properties\": {\n        \"rider_id\": {\n          \"$id\": \"#/properties/passenger/properties/rider_id\",\n          \"type\": \"integer\",\n          \"title\": \"The rider_id schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": 0,\n          \"examples\": [\n            2345243\n          ]\n        },\n        \"first_name\": {\n          \"$id\": \"#/properties/passenger/properties/first_name\",\n          \"type\": \"string\",\n          \"title\": \"The first_name schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"Jesse\"\n          ]\n        },\n        \"last_name\": {\n          \"$id\": \"#/properties/passenger/properties/last_name\",\n          \"type\": \"string\",\n          \"title\": \"The last_name schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"Menning\"\n          ]\n        },\n        \"rating\": {\n          \"$id\": \"#/properties/passenger/properties/rating\",\n          \"type\": \"integer\",\n          \"title\": \"The rating schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": 0,\n          \"examples\": [\n            2\n          ]\n        }\n      },\n      \"additionalProperties\": true\n    }\n  },\n  \"additionalProperties\": true\n}",
+      "eventIds": [
+        "6685wonq3b7"
+      ],
+      "applicationDomainId": "6685wonq399",
+      "revisionNumber": 3,
+      "versions": [
+        {
+          "createdTime": 1596720360333,
+          "updatedTime": 1596720360333,
+          "createdBy": "67tr8tku41",
+          "changedBy": "67tr8tku41",
+          "id": "fmbdqf7119l",
+          "schemaId": "csfwuxmuv03",
+          "name": "1",
+          "versionNumber": "1",
+          "content": "{\n  \"$schema\": \"http://json-schema.org/draft-07/schema\",\n  \"$id\": \"http://example.com/example.json\",\n  \"type\": \"object\",\n  \"title\": \"The root schema\",\n  \"description\": \"The root schema comprises the entire JSON document.\",\n  \"default\": {},\n  \"examples\": [\n    {\n      \"ride_id\": \"545496 c5 - a334 - 4344 - 9662 - efde68c0b98a\",\n      \"point_idx\": 107,\n      \"latitude\": 40.75473,\n      \"longitude\": -73.98385,\n      \"heading\": 111,\n      \"speed\": 8,\n      \"timestamp\": \"2020 - 06 - 03 T16: 51: 47.29612 - 04:00\",\n      \"meter_reading\": 2.4375222,\n      \"meter_increment\": 0.02278058,\n      \"ride_status\": \"enroute\",\n      \"passenger_count\": 1,\n      \"driver\": {\n        \"driver_id\": 1234132,\n        \"first_name\": \"Frank\",\n        \"last_name\": \"Smith\",\n        \"rating\": 4,\n        \"car_class\": \"SUV\"\n      },\n      \"passenger\": {\n        \"passenger_id\": 2345243,\n        \"first_name\": \"Jesse\",\n        \"last_name\": \"Menning\",\n        \"rating\": 2\n      }\n    }\n  ],\n  \"properties\": {\n    \"ride_id\": {\n      \"$id\": \"#/properties/ride_id\",\n      \"type\": \"string\",\n      \"title\": \"The ride_id schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": \"\",\n      \"examples\": [\n        \"545496 c5 - a334 - 4344 - 9662 - efde68c0b98a\"\n      ]\n    },\n    \"point_idx\": {\n      \"$id\": \"#/properties/point_idx\",\n      \"type\": \"integer\",\n      \"title\": \"The point_idx schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        107\n      ]\n    },\n    \"latitude\": {\n      \"$id\": \"#/properties/latitude\",\n      \"type\": \"number\",\n      \"title\": \"The latitude schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        40.75473\n      ]\n    },\n    \"longitude\": {\n      \"$id\": \"#/properties/longitude\",\n      \"type\": \"number\",\n      \"title\": \"The longitude schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        -73.98385\n      ]\n    },\n    \"heading\": {\n      \"$id\": \"#/properties/heading\",\n      \"type\": \"integer\",\n      \"title\": \"The heading schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        111\n      ]\n    },\n    \"speed\": {\n      \"$id\": \"#/properties/speed\",\n      \"type\": \"integer\",\n      \"title\": \"The speed schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        8\n      ]\n    },\n    \"timestamp\": {\n      \"$id\": \"#/properties/timestamp\",\n      \"type\": \"string\",\n      \"title\": \"The timestamp schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": \"\",\n      \"examples\": [\n        \"2020 - 06 - 03 T16: 51: 47.29612 - 04:00\"\n      ]\n    },\n    \"meter_reading\": {\n      \"$id\": \"#/properties/meter_reading\",\n      \"type\": \"number\",\n      \"title\": \"The meter_reading schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        2.4375222\n      ]\n    },\n    \"meter_increment\": {\n      \"$id\": \"#/properties/meter_increment\",\n      \"type\": \"number\",\n      \"title\": \"The meter_increment schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        0.02278058\n      ]\n    },\n    \"ride_status\": {\n      \"$id\": \"#/properties/ride_status\",\n      \"type\": \"string\",\n      \"title\": \"The ride_status schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": \"\",\n      \"examples\": [\n        \"enroute\"\n      ]\n    },\n    \"passenger_count\": {\n      \"$id\": \"#/properties/passenger_count\",\n      \"type\": \"integer\",\n      \"title\": \"The passenger_count schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        1\n      ]\n    },\n    \"driver\": {\n      \"$id\": \"#/properties/driver\",\n      \"type\": \"object\",\n      \"title\": \"The driver schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": {},\n      \"examples\": [\n        {\n          \"driver_id\": 1234132,\n          \"first_name\": \"Frank\",\n          \"last_name\": \"Smith\",\n          \"rating\": 4,\n          \"car_class\": \"SUV\"\n        }\n      ],\n      \"required\": [\n        \"driver_id\",\n        \"first_name\",\n        \"last_name\",\n        \"rating\",\n        \"car_class\"\n      ],\n      \"properties\": {\n        \"driver_id\": {\n          \"$id\": \"#/properties/driver/properties/driver_id\",\n          \"type\": \"integer\",\n          \"title\": \"The driver_id schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": 0,\n          \"examples\": [\n            1234132\n          ]\n        },\n        \"first_name\": {\n          \"$id\": \"#/properties/driver/properties/first_name\",\n          \"type\": \"string\",\n          \"title\": \"The first_name schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"Frank\"\n          ]\n        },\n        \"last_name\": {\n          \"$id\": \"#/properties/driver/properties/last_name\",\n          \"type\": \"string\",\n          \"title\": \"The last_name schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"Smith\"\n          ]\n        },\n        \"rating\": {\n          \"$id\": \"#/properties/driver/properties/rating\",\n          \"type\": \"integer\",\n          \"title\": \"The rating schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": 0,\n          \"examples\": [\n            4\n          ]\n        },\n        \"car_class\": {\n          \"$id\": \"#/properties/driver/properties/car_class\",\n          \"type\": \"string\",\n          \"title\": \"The car_class schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"SUV\"\n          ]\n        }\n      },\n      \"additionalProperties\": true\n    },\n    \"passenger\": {\n      \"$id\": \"#/properties/passenger\",\n      \"type\": \"object\",\n      \"title\": \"The passenger schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": {},\n      \"examples\": [\n        {\n          \"rider_id\": 2345243,\n          \"first_name\": \"Jesse\",\n          \"last_name\": \"Menning\",\n          \"rating\": 2\n        }\n      ],\n      \"required\": [\n        \"rider_id\",\n        \"first_name\",\n        \"last_name\",\n        \"rating\"\n      ],\n      \"properties\": {\n        \"rider_id\": {\n          \"$id\": \"#/properties/passenger/properties/rider_id\",\n          \"type\": \"integer\",\n          \"title\": \"The rider_id schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": 0,\n          \"examples\": [\n            2345243\n          ]\n        },\n        \"first_name\": {\n          \"$id\": \"#/properties/passenger/properties/first_name\",\n          \"type\": \"string\",\n          \"title\": \"The first_name schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"Jesse\"\n          ]\n        },\n        \"last_name\": {\n          \"$id\": \"#/properties/passenger/properties/last_name\",\n          \"type\": \"string\",\n          \"title\": \"The last_name schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"Menning\"\n          ]\n        },\n        \"rating\": {\n          \"$id\": \"#/properties/passenger/properties/rating\",\n          \"type\": \"integer\",\n          \"title\": \"The rating schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": 0,\n          \"examples\": [\n            2\n          ]\n        }\n      },\n      \"additionalProperties\": true\n    }\n  },\n  \"additionalProperties\": true\n}",
+          "applicationDomainId": "6685wonq399",
+          "revisionNumber": 1,
+          "type": "schemaVersion"
+        }
+      ],
+      "type": "schema"
+    },
+    {
+      "createdTime": 1593615283280,
+      "updatedTime": 1594391170677,
+      "createdBy": "mc1va1xb",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "6685wonq3a3",
+      "name": "TaxiStatusUpdatePayload",
+      "shared": true,
+      "description": "",
+      "contentType": "JSON",
+      "content": "{\n  \"$schema\": \"http://json-schema.org/draft-07/schema\",\n  \"$id\": \"http://example.com/example.json\",\n  \"type\": \"object\",\n  \"title\": \"The root schema\",\n  \"description\": \"The root schema comprises the entire JSON document.\",\n  \"default\": {},\n  \"examples\": [\n    {\n      \"ride_id\": \"545496 c5 - a334 - 4344 - 9662 - efde68c0b98a\",\n      \"point_idx\": 107,\n      \"latitude\": 40.75473,\n      \"longitude\": -73.98385,\n      \"timestamp\": \"2020 - 06 - 03 T16: 51: 47.29612 - 04:00\",\n      \"meter_reading\": 2.4375222,\n      \"meter_increment\": 0.02278058,\n      \"ride_status\": \"enroute\",\n      \"passenger_count\": 1\n    }\n  ],\n  \"required\": [\n    \"ride_id\",\n    \"point_idx\",\n    \"latitude\",\n    \"longitude\",\n    \"timestamp\",\n    \"meter_reading\",\n    \"meter_increment\",\n    \"ride_status\",\n    \"passenger_count\"\n  ],\n  \"additionalProperties\": true,\n  \"properties\": {\n    \"ride_id\": {\n      \"$id\": \"#/properties/ride_id\",\n      \"type\": \"string\",\n      \"format\": \"uuid\",\n      \"title\": \"The ride_id schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": \"\",\n      \"examples\": [\n        \"545496 c5 - a334 - 4344 - 9662 - efde68c0b98a\"\n      ]\n    },\n    \"point_idx\": {\n      \"$id\": \"#/properties/point_idx\",\n      \"type\": \"integer\",\n      \"title\": \"The point_idx schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        107\n      ]\n    },\n    \"latitude\": {\n      \"$id\": \"#/properties/latitude\",\n      \"type\": \"number\",\n      \"title\": \"The latitude schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        40.75473\n      ]\n    },\n    \"longitude\": {\n      \"$id\": \"#/properties/longitude\",\n      \"type\": \"number\",\n      \"title\": \"The longitude schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        -73.98385\n      ]\n    },\n    \"timestamp\": {\n      \"$id\": \"#/properties/timestamp\",\n      \"type\": \"string\",\n      \"title\": \"The timestamp schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": \"\",\n      \"examples\": [\n        \"2020-06-03T16:51:47.29612-04:00\"\n      ]\n    },\n    \"meter_reading\": {\n      \"$id\": \"#/properties/meter_reading\",\n      \"type\": \"number\",\n      \"title\": \"The meter_reading schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        2.4375222\n      ]\n    },\n    \"meter_increment\": {\n      \"$id\": \"#/properties/meter_increment\",\n      \"type\": \"number\",\n      \"title\": \"The meter_increment schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        0.02278058\n      ]\n    },\n    \"ride_status\": {\n      \"$id\": \"#/properties/ride_status\",\n      \"type\": \"string\",\n      \"title\": \"The ride_status schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": \"\",\n      \"examples\": [\n        \"enroute\"\n      ]\n    },\n    \"passenger_count\": {\n      \"$id\": \"#/properties/passenger_count\",\n      \"type\": \"integer\",\n      \"title\": \"The passenger_count schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": 0,\n      \"examples\": [\n        1\n      ]\n    }\n  }\n}",
+      "applicationDomainId": "6685wonq399",
+      "revisionNumber": 2,
+      "versions": [],
+      "type": "schema"
+    }
+  ],
+  "applications": [
+    {
+      "createdTime": 1594817236155,
+      "updatedTime": 1595343423535,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48wa9t",
+      "name": "Driver Database",
+      "version": "0.0.1",
+      "description": "<p>This contains information about Drivers.  In the real world, this is used only by the Driver IoT device, as to adhere to microservice principles.  In our demos, the simulators also use this.</p><p>It contains the \"golden record\" about all things driver: Name, Address, Driver Id, Password, etc.  NEEDS TO INCLUDE \"LAST UPDATE SOURCE\" field (e.g. Salesforce </p>",
+      "applicationDomainId": "6685wonq399",
+      "producedEventIds": [],
+      "consumedEventIds": [],
+      "revisionNumber": 3,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1594403212259,
+      "updatedTime": 1594818996887,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48vy9v",
+      "name": "Driver IoT Device",
+      "version": "0.0.1",
+      "description": "",
+      "applicationDomainId": "6685wonq399",
+      "producedEventIds": [
+        "6685wonq3b7",
+        "9hbwf48waip"
+      ],
+      "consumedEventIds": [
+        "9hbwf48vxkl"
+      ],
+      "revisionNumber": 4,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1594402130970,
+      "updatedTime": 1594402759348,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48vy4l",
+      "name": "ProcessPayment",
+      "version": "0.0.1",
+      "description": "<p>subscribed to dropoff events.  processes payments</p>",
+      "applicationDomainId": "6685wonq399",
+      "producedEventIds": [
+        "9hbwf48vy5f"
+      ],
+      "consumedEventIds": [
+        "6685wonq3b7"
+      ],
+      "revisionNumber": 3,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1593615283307,
+      "updatedTime": 1594820182250,
+      "createdBy": "mc1va1xb",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "6685wonq3cl",
+      "name": "Ride Simulator - Constant Push",
+      "version": "0.0.1",
+      "description": "<p>Existing simulator which constantly pumps out ride data (existing)</p><p><br></p><p>This is used for analytics use cases where we need a lot of data, or if people just want to have a stream of data to get up and running</p>",
+      "applicationDomainId": "6685wonq399",
+      "producedEventIds": [
+        "6685wonq3b7"
+      ],
+      "consumedEventIds": [],
+      "revisionNumber": 10,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1594402568645,
+      "updatedTime": 1594820231294,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48vy6t",
+      "name": "Ride Simulator - Single ride, request/reply",
+      "version": "0.0.1",
+      "description": "<p>Simple script (python?)</p><p><br></p><p>Takes incoming ride request, generates series of RideUpdated.  For initial version, can  be the same route every time, Central Park to Times Square.</p><p><br></p><p>This is used for demos where more interaction is required (e.g. IoT, mobile, iPaaS backend, etc.)</p>",
+      "applicationDomainId": "6685wonq399",
+      "producedEventIds": [
+        "6685wonq3b7"
+      ],
+      "consumedEventIds": [
+        "9hbwf48vxkl"
+      ],
+      "revisionNumber": 6,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1593615283307,
+      "updatedTime": 1593615283307,
+      "createdBy": "mc1va1xb",
+      "changedBy": "mc1va1xb",
+      "id": "6685wonq3c1",
+      "name": "RideDropoffConsumer",
+      "version": "0.0.1",
+      "description": "<p><span style=\"color: rgb(0, 0, 0);\">This is a Spring Cloud Stream microservice that will consume summary events for further analysis</span></p>",
+      "applicationDomainId": "6685wonq399",
+      "producedEventIds": [],
+      "consumedEventIds": [
+        "6685wonq3ax"
+      ],
+      "revisionNumber": 1,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1593615283307,
+      "updatedTime": 1593615283307,
+      "createdBy": "mc1va1xb",
+      "changedBy": "mc1va1xb",
+      "id": "6685wonq3cb",
+      "name": "RideDropoffProcessor",
+      "version": "0.0.1",
+      "description": "<p><span style=\"color: rgb(0, 0, 0);\">This is a Spring Cloud Stream microservice that will consume the TaxiStatusUpdates with a ride status of \"dropoff\", process the events, and output summary events.</span></p>",
+      "applicationDomainId": "6685wonq399",
+      "producedEventIds": [
+        "6685wonq3ax"
+      ],
+      "consumedEventIds": [
+        "6685wonq3b7"
+      ],
+      "revisionNumber": 1,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1594817124533,
+      "updatedTime": 1594820747605,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48wa8z",
+      "name": "Rider Database",
+      "version": "0.0.1",
+      "description": "<p>This contains information about Riders. his is used only by the Driver IoT device, as to adhere to microservice principles. </p><p>It contains the \"golden record\" about all things rider: name, address, rider id, password, etc.</p><p><br></p><p><br></p>",
+      "applicationDomainId": "6685wonq399",
+      "producedEventIds": [],
+      "consumedEventIds": [],
+      "revisionNumber": 2,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1594393018281,
+      "updatedTime": 1594820831825,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48vxgz",
+      "name": "Rider Mobile application",
+      "version": "0.0.1",
+      "description": "<p>Request a ride</p>",
+      "applicationDomainId": "6685wonq399",
+      "producedEventIds": [
+        "9hbwf48vxkl",
+        "9hbwf48wb3j"
+      ],
+      "consumedEventIds": [
+        "6685wonq3b7",
+        "9hbwf48vxin",
+        "9hbwf48vy5f"
+      ],
+      "revisionNumber": 7,
+      "applicationClass": "unspecified",
+      "type": "application"
+    }
+  ]
+}
