@@ -1,0 +1,186 @@
+{
+  "createdTime": 1594390967708,
+  "updatedTime": 1594819389732,
+  "createdBy": "2ko4lk2qe58f",
+  "changedBy": "2ko4lk2qe58f",
+  "id": "9hbwf48vx1p",
+  "name": "NYC Modern Taxi Co - Back Office",
+  "topicDomain": "taxinyc/backoffice",
+  "description": "<p>Showcases iPaaS integration</p>",
+  "enforceUniqueTopicNames": true,
+  "type": "applicationDomain",
+  "events": [
+    {
+      "createdTime": 1595339344005,
+      "updatedTime": 1595339344005,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "b4vm9uoad7f",
+      "name": "BackgroundCheckCompleted",
+      "version": "0.0.1",
+      "shared": true,
+      "topicName": "taxinyc/backoffice/BackgroundCheck/completed/v1/${person_type}/${background_check_result}",
+      "description": "",
+      "schemaId": null,
+      "schemaVersionId": null,
+      "applicationDomainId": "9hbwf48vx1p",
+      "producedApplicationIds": [],
+      "consumedApplicationIds": [],
+      "revisionNumber": 1,
+      "brokerType": "unspecified",
+      "type": "event"
+    }
+  ],
+  "schemas": [
+    {
+      "createdTime": 1595511358395,
+      "updatedTime": 1595515233814,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "b4vm9uoavxb",
+      "name": "DriverAccount",
+      "shared": true,
+      "description": "",
+      "contentType": "JSON",
+      "content": "{\n  \"$schema\": \"http://json-schema.org/draft-07/schema\",\n  \"$id\": \"http://example.com/example.json\",\n  \"type\": \"object\",\n  \"title\": \"The root schema\",\n  \"description\": \"The root schema comprises the entire JSON document.\",\n  \"default\": {},\n  \"examples\": [\n    {\n      \"source\": \"Salesforce\",\n      \"driver\": {\n        \"driver_id\": \"f63b03d3-60c1-40b5-99fd-16476c113fd8\",\n        \"first_name\": \"Frank\",\n        \"last_name\": \"Smith\",\n        \"rating\": 4,\n        \"car_class\": \"SUV\"\n      },\n      \"salesforce_id\": \"0013t00001XEd79AAD\",\n      \"account_status\": \"activated\",\n      \"background_status\": \"approved\",\n      \"driver_billing\": {\n        \"account_type\": \"Person\",\n        \"billing_street_address\": \"Frank\",\n        \"billing_city\": \"Smith\",\n        \"billing_state\": \"MA\",\n        \"billing_zip\": \"01748\"\n      }\n    }\n  ],\n  \"additionalProperties\": true,\n  \"properties\": {\n    \"source\": {\n      \"$id\": \"#/properties/source\",\n      \"type\": \"string\",\n      \"title\": \"The source schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": \"\",\n      \"examples\": [\n        \"Salesforce\"\n      ]\n    },\n    \"driver\": {\n      \"$id\": \"#/properties/driver\",\n      \"type\": \"object\",\n      \"title\": \"The driver schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": {},\n      \"examples\": [\n        {\n          \"driver_id\": \"f63b03d3-60c1-40b5-99fd-16476c113fd8\",\n          \"first_name\": \"Frank\",\n          \"last_name\": \"Smith\",\n          \"rating\": 4,\n          \"car_class\": \"SUV\"\n        }\n      ],\n      \"additionalProperties\": true,\n      \"properties\": {\n        \"driver_id\": {\n          \"$id\": \"#/properties/driver/properties/driver_id\",\n          \"type\": \"string\",\n          \"title\": \"The driver_id schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"f63b03d3-60c1-40b5-99fd-16476c113fd8\"\n          ]\n        },\n        \"first_name\": {\n          \"$id\": \"#/properties/driver/properties/first_name\",\n          \"type\": \"string\",\n          \"title\": \"The first_name schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"Frank\"\n          ]\n        },\n        \"last_name\": {\n          \"$id\": \"#/properties/driver/properties/last_name\",\n          \"type\": \"string\",\n          \"title\": \"The last_name schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"Smith\"\n          ]\n        },\n        \"rating\": {\n          \"$id\": \"#/properties/driver/properties/rating\",\n          \"type\": \"integer\",\n          \"title\": \"The rating schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": 0,\n          \"examples\": [\n            4\n          ]\n        },\n        \"car_class\": {\n          \"$id\": \"#/properties/driver/properties/car_class\",\n          \"type\": \"string\",\n          \"title\": \"The car_class schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"SUV\"\n          ]\n        }\n      }\n    },\n    \"salesforce_id\": {\n      \"$id\": \"#/properties/salesforce_id\",\n      \"type\": \"string\",\n      \"title\": \"The salesforce_id schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": \"\",\n      \"examples\": [\n        \"0013t00001XEd79AAD\"\n      ]\n    },\n    \"account_status\": {\n      \"$id\": \"#/properties/account_status\",\n      \"type\": \"string\",\n      \"title\": \"The account_status schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": \"\",\n      \"examples\": [\n        \"activated\"\n      ]\n    },\n    \"background_status\": {\n      \"$id\": \"#/properties/background_status\",\n      \"type\": \"string\",\n      \"title\": \"The background_status schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": \"\",\n      \"examples\": [\n        \"approved\"\n      ]\n    },\n    \"driver_billing\": {\n      \"$id\": \"#/properties/driver_billing\",\n      \"type\": \"object\",\n      \"title\": \"The driver_billing schema\",\n      \"description\": \"An explanation about the purpose of this instance.\",\n      \"default\": {},\n      \"examples\": [\n        {\n          \"account_type\": \"Person\",\n          \"billing_street_address\": \"Frank\",\n          \"billing_city\": \"Smith\",\n          \"billing_state\": \"MA\",\n          \"billing_zip\": \"01748\"\n        }\n      ],\n      \"required\": [\n        \"account_type\",\n        \"billing_street_address\",\n        \"billing_city\",\n        \"billing_state\",\n        \"billing_zip\"\n      ],\n      \"additionalProperties\": true,\n      \"properties\": {\n        \"account_type\": {\n          \"$id\": \"#/properties/driver_billing/properties/account_type\",\n          \"type\": \"string\",\n          \"title\": \"The account_type schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"Person\"\n          ]\n        },\n        \"billing_street_address\": {\n          \"$id\": \"#/properties/driver_billing/properties/billing_street_address\",\n          \"type\": \"string\",\n          \"title\": \"The billing_street_address schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"Frank\"\n          ]\n        },\n        \"billing_city\": {\n          \"$id\": \"#/properties/driver_billing/properties/billing_city\",\n          \"type\": \"string\",\n          \"title\": \"The billing_city schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"Smith\"\n          ]\n        },\n        \"billing_state\": {\n          \"$id\": \"#/properties/driver_billing/properties/billing_state\",\n          \"type\": \"string\",\n          \"title\": \"The billing_state schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"MA\"\n          ]\n        },\n        \"billing_zip\": {\n          \"$id\": \"#/properties/driver_billing/properties/billing_zip\",\n          \"type\": \"string\",\n          \"title\": \"The billing_zip schema\",\n          \"description\": \"An explanation about the purpose of this instance.\",\n          \"default\": \"\",\n          \"examples\": [\n            \"01748\"\n          ]\n        }\n      }\n    }\n  }\n}",
+      "eventIds": [
+        "9hbwf48waip"
+      ],
+      "applicationDomainId": "9hbwf48vx1p",
+      "revisionNumber": 3,
+      "type": "schema"
+    }
+  ],
+  "applications": [
+    {
+      "createdTime": 1594392728889,
+      "updatedTime": 1595518070549,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48vxf1",
+      "name": "<Boomi> Publish Salesforce Events",
+      "version": "0.0.1",
+      "description": "",
+      "applicationDomainId": "9hbwf48vx1p",
+      "producedEventIds": [
+        "9hbwf48waip"
+      ],
+      "consumedEventIds": [
+        "9hbwf48waip"
+      ],
+      "revisionNumber": 6,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1595339041908,
+      "updatedTime": 1595518143985,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "b4vm9uoad5r",
+      "name": "<Boomi> Update Driver Database",
+      "version": "0.0.1",
+      "description": "",
+      "applicationDomainId": "9hbwf48vx1p",
+      "producedEventIds": [],
+      "consumedEventIds": [
+        "9hbwf48waip"
+      ],
+      "revisionNumber": 6,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1594391074909,
+      "updatedTime": 1596035186909,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48vx2t",
+      "name": "<Boomi> UpsertSalesforceDriverAccount",
+      "version": "0.0.1",
+      "description": "<p>Boomi Process that uses Driver Events to update Accounts in Salesforce.</p>",
+      "applicationDomainId": "9hbwf48vx1p",
+      "producedEventIds": [],
+      "consumedEventIds": [
+        "6685wonq3b7"
+      ],
+      "revisionNumber": 7,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1595259573606,
+      "updatedTime": 1595967513156,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "b4vm9uoaakz",
+      "name": "<External REST API> Security Co Background Check",
+      "version": "0.0.1",
+      "description": "",
+      "applicationDomainId": "9hbwf48vx1p",
+      "producedEventIds": [
+        "9hbwf48waip"
+      ],
+      "consumedEventIds": [
+        "9hbwf48waip"
+      ],
+      "revisionNumber": 8,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1594402928576,
+      "updatedTime": 1594403347731,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48vy8h",
+      "name": "InvoiceSystem",
+      "version": "0.0.1",
+      "description": "",
+      "applicationDomainId": "9hbwf48vx1p",
+      "producedEventIds": [],
+      "consumedEventIds": [
+        "9hbwf48vy5f"
+      ],
+      "revisionNumber": 2,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1594391110059,
+      "updatedTime": 1595518024873,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48vx3n",
+      "name": "Salesforce SaaS",
+      "version": "0.0.1",
+      "description": "<p>SaaS Provider</p>",
+      "applicationDomainId": "9hbwf48vx1p",
+      "producedEventIds": [
+        "9hbwf48waip"
+      ],
+      "consumedEventIds": [],
+      "revisionNumber": 4,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1594393898033,
+      "updatedTime": 1594394006389,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48vxlz",
+      "name": "SendToFlowExecutiveDashboard",
+      "version": "0.0.1",
+      "description": "<p>Boomi Integration Process to Boomi Flow</p>",
+      "applicationDomainId": "9hbwf48vx1p",
+      "producedEventIds": [],
+      "consumedEventIds": [
+        "9hbwf48vxin"
+      ],
+      "revisionNumber": 3,
+      "applicationClass": "unspecified",
+      "type": "application"
+    }
+  ]
+}

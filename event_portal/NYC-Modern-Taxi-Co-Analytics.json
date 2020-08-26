@@ -1,0 +1,142 @@
+{
+  "createdTime": 1594391726044,
+  "updatedTime": 1594819418384,
+  "createdBy": "2ko4lk2qe58f",
+  "changedBy": "2ko4lk2qe58f",
+  "id": "9hbwf48vx5b",
+  "name": "NYC Modern Taxi Co - Analytics",
+  "topicDomain": "taxinyc/analytics",
+  "description": "<p>Showcases integration with BEAM, Kafka and other big data tools</p>",
+  "enforceUniqueTopicNames": true,
+  "type": "applicationDomain",
+  "events": [
+    {
+      "createdTime": 1594393563585,
+      "updatedTime": 1594760216967,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48vxin",
+      "name": "KPIThresholdExceeded",
+      "version": "0.0.1",
+      "shared": true,
+      "topicName": "taxinyc/analytics/kpi/exceeded/v1/${kpi_type}/${kpi_metric}",
+      "description": "",
+      "schemaId": null,
+      "schemaVersionId": null,
+      "applicationDomainId": "9hbwf48vx5b",
+      "producedApplicationIds": [
+        "9hbwf48vx97"
+      ],
+      "consumedApplicationIds": [
+        "9hbwf48vx8d",
+        "9hbwf48vxgz",
+        "9hbwf48vxlz"
+      ],
+      "revisionNumber": 6,
+      "brokerType": "unspecified",
+      "type": "event"
+    }
+  ],
+  "schemas": [],
+  "applications": [
+    {
+      "createdTime": 1594663001049,
+      "updatedTime": 1595518217427,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48w4x1",
+      "name": "Apache Beam",
+      "version": "0.0.1",
+      "description": "",
+      "applicationDomainId": "9hbwf48vx5b",
+      "producedEventIds": [],
+      "consumedEventIds": [
+        "6685wonq3b7",
+        "9hbwf48vxkl",
+        "9hbwf48vy5f",
+        "9hbwf48waip",
+        "9hbwf48wb3j"
+      ],
+      "revisionNumber": 7,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1594663061831,
+      "updatedTime": 1594663061831,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48w4y5",
+      "name": "Google Cloud Machine Learning",
+      "version": "0.0.1",
+      "description": "",
+      "applicationDomainId": "9hbwf48vx5b",
+      "producedEventIds": [],
+      "consumedEventIds": [],
+      "revisionNumber": 1,
+      "applicationClass": "unspecified",
+      "type": "application"
+    },
+    {
+      "createdTime": 1594392302329,
+      "updatedTime": 1595518237251,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48vx8d",
+      "name": "Kafka Data Analytics",
+      "version": "0.0.1",
+      "description": "",
+      "applicationDomainId": "9hbwf48vx5b",
+      "producedEventIds": [],
+      "consumedEventIds": [
+        "6685wonq3b7",
+        "9hbwf48vxin",
+        "9hbwf48vxkl",
+        "9hbwf48vy5f",
+        "9hbwf48wb3j"
+      ],
+      "revisionNumber": 9,
+      "applicationClass": "kafka_connector",
+      "connectorType": "sink",
+      "clusterId": null,
+      "connectorClass": null,
+      "configurationParameters": {},
+      "type": "application"
+    },
+    {
+      "createdTime": 1594392358352,
+      "updatedTime": 1594394297461,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48vx97",
+      "name": "PublishAnalyticsThresholdsSurpassedEvents",
+      "version": "0.0.1",
+      "description": "",
+      "applicationDomainId": "9hbwf48vx5b",
+      "producedEventIds": [
+        "9hbwf48vxin"
+      ],
+      "consumedEventIds": [],
+      "revisionNumber": 4,
+      "applicationClass": "kafka_application",
+      "consumerGroups": [],
+      "type": "application"
+    },
+    {
+      "createdTime": 1594824019455,
+      "updatedTime": 1594824019455,
+      "createdBy": "2ko4lk2qe58f",
+      "changedBy": "2ko4lk2qe58f",
+      "id": "9hbwf48wb75",
+      "name": "StreamSets",
+      "version": "0.0.1",
+      "description": "",
+      "applicationDomainId": "9hbwf48vx5b",
+      "producedEventIds": [],
+      "consumedEventIds": [],
+      "revisionNumber": 1,
+      "applicationClass": "unspecified",
+      "type": "application"
+    }
+  ]
+}
