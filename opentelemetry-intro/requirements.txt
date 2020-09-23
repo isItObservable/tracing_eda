@@ -1,3 +1,4 @@
 opentelemetry-api==0.12b0
 opentelemetry-sdk==0.12b0
 opentelemetry-ext-jaeger==0.11b1
+pysolace==0.1.0
