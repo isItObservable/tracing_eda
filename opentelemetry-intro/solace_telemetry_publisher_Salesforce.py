@@ -1,3 +1,5 @@
+import os
+
 """ Run this file then run how_to_publish_message.py so that it can listen to incoming messages """
 from opentelemetry import trace
 from opentelemetry.ext import jaeger
@@ -9,15 +11,11 @@ from pysolace.messaging.publisher.outbound_message import OutboundMessage
 from pysolace.messaging.utils.topic import Topic
 
 outboundTopic = "opentelemetry/helloworld"
-hostName = "tcp://mr-d8f4yze27kt.messaging.solace.cloud:55555"
-vpnName = "cto-demo-virginia-azure"
-solaceUserName = "solace-cloud-client"
-solacePassword = "ceo79nfo0ndf94niceral94t2n"
 
-broker_props = {"solace.messaging.transport.host": hostName,
-                "solace.messaging.service.vpn-name": vpnName,
-                "solace.messaging.authentication.scheme.basic.user-name": solaceUserName,
-                "solace.messaging.authentication.scheme.basic.password": solacePassword}
+broker_props = {"solace.messaging.transport.host": os.environ['HOST'],
+                "solace.messaging.service.vpn-name": os.environ['VPN'],
+                "solace.messaging.authentication.scheme.basic.user-name": os.environ['SOL_USERNAME'],
+                "solace.messaging.authentication.scheme.basic.password": os.environ['SOL_PASSWORD']}
 
 trace.set_tracer_provider(TracerProvider())
 jaeger_exporter = jaeger.JaegerSpanExporter(
