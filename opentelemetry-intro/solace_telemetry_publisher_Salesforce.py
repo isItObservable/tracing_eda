@@ -21,8 +21,8 @@ def direct_message_publish(messaging_service: MessagingService, topic, message):
 
 outboundTopic = "opentelemetry/helloworld"
 
-broker_props = {"solace.messaging.transport.host": os.environ['HOST'],
-                "solace.messaging.service.vpn-name": os.environ['VPN'],
+broker_props = {"solace.messaging.transport.host": os.environ['SOL_HOST'],
+                "solace.messaging.service.vpn-name": os.environ['SOL_VPN'],
                 "solace.messaging.authentication.scheme.basic.user-name": os.environ['SOL_USERNAME'],
                 "solace.messaging.authentication.scheme.basic.password": os.environ['SOL_PASSWORD']}
 
@@ -48,7 +48,7 @@ parentSpan = tracer.start_span(
         "messaging.destination-kind": "topic",
         "messaging.protocol": "jcsmp",
         "messaging.protocol_version": "1.0",
-        "messaging.url": os.environ['HOST']}
+        "messaging.url": os.environ['SOL_HOST']}
 )
 
 messaging_service = MessagingService.builder().from_properties(broker_props).build()
