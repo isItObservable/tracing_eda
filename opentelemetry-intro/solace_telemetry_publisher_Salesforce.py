@@ -7,8 +7,17 @@ from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchExportSpanProcessor
 from opentelemetry.trace import SpanKind
 from pysolace.messaging.messaging_service import MessagingService
-from pysolace.messaging.publisher.outbound_message import OutboundMessage
 from pysolace.messaging.utils.topic import Topic
+
+def direct_message_publish(messaging_service: MessagingService, topic, message):
+    try:
+        # Create a direct message publish service and start it
+        direct_publish_service = messaging_service.create_direct_message_publisher_builder().build()
+        direct_publish_service.start_async()
+        # Publish the message!
+        direct_publish_service.publish(destination=topic, message=message)
+    finally:
+        direct_publish_service.terminate()
 
 outboundTopic = "opentelemetry/helloworld"
 
@@ -39,22 +48,25 @@ parentSpan = tracer.start_span(
         "messaging.destination-kind": "topic",
         "messaging.protocol": "jcsmp",
         "messaging.protocol_version": "1.0",
-        "messaging.url": hostName}
+        "messaging.url": os.environ['HOST']}
 )
 
 messaging_service = MessagingService.builder().from_properties(broker_props).build()
 messaging_service.connect_async()
-direct_publish_service = messaging_service.create_direct_message_publisher_builder().build()
-direct_publish_service.start_async()
+
+
 trace_id = parentSpan.get_context().trace_id
 span_id = parentSpan.get_context().span_id
 print("parentSpan trace_id  on sender side:" + str(trace_id))
 print("parentSpan span_id  on sender side:" + str(span_id))
-destination_name = Topic.of("opentelemetry/helloworld")
-outbound_msg = OutboundMessage.builder() \
+
+destination_name = Topic.of(outboundTopic)
+
+outbound_msg = messaging_service.message_builder() \
     .with_property("trace_id", str(trace_id)) \
     .with_property("span_id", str(span_id)) \
     .build("Hello World! This is a message published from Python!")
-direct_publish_service.publish(destination=destination_name, message=outbound_msg)
+
+direct_message_publish(messaging_service, destination_name, outbound_msg)
 
 parentSpan.end()
