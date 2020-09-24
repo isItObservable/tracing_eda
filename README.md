@@ -9,6 +9,14 @@
 
 ## How to run
 
+### REST consumer intro
+1. navigate to opentelemtry-intro directory
+1. Execute `HOST=<host_name> VPN=<vpn_name> SOL_USERNAME=<username> SOL_PASSWORD=<password> python solace_telemetry_consumer_REST.py.py`
+
+### Database consumer intro
+1. navigate to opentelemtry-intro directory
+1. Execute `HOST=<host_name> VPN=<vpn_name> SOL_USERNAME=<username> SOL_PASSWORD=<password> python solace_telemetry_consumer_Database.py.py`
+
 ### Publisher intro
 1. navigate to opentelemtry-intro directory
 1. Execute `HOST=<host_name> VPN=<vpn_name> SOL_USERNAME=<username> SOL_PASSWORD=<password> python solace_telemetry_publisher_Salesforce.py`
