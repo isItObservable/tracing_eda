@@ -1,6 +1,6 @@
 opentelemetry-api==0.11b0
 opentelemetry-ext-jaeger==0.11b1
 opentelemetry-sdk==0.11b0
-pysolace==0.1.0
 six==1.15.0
 thrift==0.13.0
+pysolace==0.1.0

@@ -65,8 +65,8 @@ def direct_message_consume(messaging_service: MessagingService, topic_subscripti
 
 inboundTopic = "opentelemetry/helloworld"
 
-broker_props = {"solace.messaging.transport.host": os.environ['HOST'],
-                "solace.messaging.service.vpn-name": os.environ['VPN'],
+broker_props = {"solace.messaging.transport.host": os.environ['SOL_HOST'],
+                "solace.messaging.service.vpn-name": os.environ['SOL_VPN'],
                 "solace.messaging.authentication.scheme.basic.user-name": os.environ['SOL_USERNAME'],
                 "solace.messaging.authentication.scheme.basic.password": os.environ['SOL_PASSWORD']}
 
