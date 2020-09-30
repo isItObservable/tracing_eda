@@ -18,13 +18,22 @@ class MessageHandlerImpl(MessageHandler):
         span_id = str(message.get_property("span_id"))
         print("parentSpan trace_id on receiver side:" + trace_id)
         print("parentSpan span_id on receiver side:" + span_id)
+
+        logs_file.write("parentSpan trace_id on receiver side:" + trace_id)
+        logs_file.write("parentSpan span_id on receiver side:" + span_id)
+
         propagated_context = SpanContext(int(trace_id), int(span_id), True)
         childSpan = tracer.start_span("RideUpdated receive", parent=propagated_context)
 
         topic = message.get_destination_name()
         payload_str = message.get_payload_as_string()
+
         print("\n" + f"DATABASE CALLBACK: Message Received on Topic: {topic}.\n"
-                     f"Message String: {payload_str} \n")
+                     f"{int(time.time())}: {payload_str} \n")
+
+        logs_file.write("\n" + f"DATABASE CALLBACK: Message Received on Topic: {topic}.\n"
+                     f"{int(time.time())}: {payload_str} \n\n")
+
         time.sleep(1)
         childSpan.end()
 
@@ -46,8 +55,10 @@ def direct_message_consume(messaging_service: MessagingService, topic_subscripti
         topics = [TopicSubscription.of(topic_subscription)]
 
         # Create a direct message consumer service with the topic subscription and start it
-        direct_receive_service = messaging_service.create_direct_message_receiver_builder()
-        direct_receive_service = direct_receive_service.with_subscriptions(topics).build()
+        direct_receive_service = messaging_service \
+                                .create_direct_message_receiver_builder() \
+                                .with_subscriptions(topics) \
+                                .build()
         direct_receive_service.start()
 
         # Register a callback message handler
@@ -73,5 +84,21 @@ broker_props = {"solace.messaging.transport.host": os.environ['SOL_HOST'],
 # Initialize A messaging service + Connect to the broker
 messaging_service = MessagingService.builder().from_properties(broker_props).build()
 messaging_service.connect_async()
+
+# Create a directory to write to file
+current_directory = os.getcwd()
+logs_dir = os.path.join(current_directory, "logs")
+if not os.path.exists(logs_dir):
+    os.makedirs(logs_dir)
+    
+# Create file for logs
+file_name = os.path.join(logs_dir, "Database.txt")
+
+if os.path.exists(file_name):
+    append_write = 'a' # append if already exists
+else:
+    append_write = 'w+' # make a new file if not
+    
+logs_file = open(file_name, append_write)
 
 direct_message_consume(messaging_service, inboundTopic)
