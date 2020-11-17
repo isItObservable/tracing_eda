@@ -6,9 +6,9 @@ from opentelemetry.ext import jaeger
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchExportSpanProcessor
 from opentelemetry.trace import SpanContext
-from pysolace.messaging.messaging_service import MessagingService
-from pysolace.messaging.utils.resources.topic_subscription import TopicSubscription
-from pysolace.messaging.receiver.message_receiver import MessageHandler
+from solace.messaging.messaging_service import MessagingService
+from solace.messaging.resources.topic_subscription import TopicSubscription
+from solace.messaging.receiver.message_receiver import MessageHandler
 
 # Callback function to handle received messages
 class MessageHandlerImpl(MessageHandler):
@@ -75,10 +75,10 @@ def direct_message_consume(messaging_service: MessagingService, topic_subscripti
 
 inboundTopic = "opentelemetry/helloworld"
 
-broker_props = {"solace.messaging.transport.host": os.environ['SOL_HOST'],
-                "solace.messaging.service.vpn-name": os.environ['SOL_VPN'],
-                "solace.messaging.authentication.scheme.basic.user-name": os.environ['SOL_USERNAME'],
-                "solace.messaging.authentication.scheme.basic.password": os.environ['SOL_PASSWORD']}
+broker_props = {"solace.messaging.transport.host": os.environ['SOLACE_HOST'],
+                "solace.messaging.service.vpn-name": os.environ['SOLACE_VPN'],
+                "solace.messaging.authentication.scheme.basic.username": os.environ['SOLACE_USERNAME'],
+                "solace.messaging.authentication.scheme.basic.password": os.environ['SOLACE_PASSWORD']}
 
 # Initialize A messaging service + Connect to the broker
 messaging_service = MessagingService.builder().from_properties(broker_props).build()

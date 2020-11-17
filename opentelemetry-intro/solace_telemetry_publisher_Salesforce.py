@@ -6,8 +6,8 @@ from opentelemetry.ext import jaeger
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchExportSpanProcessor
 from opentelemetry.trace import SpanKind
-from pysolace.messaging.messaging_service import MessagingService
-from pysolace.messaging.utils.topic import Topic
+from solace.messaging.messaging_service import MessagingService
+from solace.messaging.resources.topic import Topic
 
 def direct_message_publish(messaging_service: MessagingService, topic, message):
     try:
@@ -21,10 +21,10 @@ def direct_message_publish(messaging_service: MessagingService, topic, message):
 
 outboundTopic = "opentelemetry/helloworld"
 
-broker_props = {"solace.messaging.transport.host": os.environ['SOL_HOST'],
-                "solace.messaging.service.vpn-name": os.environ['SOL_VPN'],
-                "solace.messaging.authentication.scheme.basic.user-name": os.environ['SOL_USERNAME'],
-                "solace.messaging.authentication.scheme.basic.password": os.environ['SOL_PASSWORD']}
+broker_props = {"solace.messaging.transport.host": os.environ['SOLACE_HOST'],
+                "solace.messaging.service.vpn-name": os.environ['SOLACE_VPN'],
+                "solace.messaging.authentication.scheme.basic.username": os.environ['SOLACE_USERNAME'],
+                "solace.messaging.authentication.scheme.basic.password": os.environ['SOLACE_PASSWORD']}
 
 trace.set_tracer_provider(TracerProvider())
 jaeger_exporter = jaeger.JaegerSpanExporter(
@@ -48,7 +48,7 @@ parentSpan = tracer.start_span(
         "messaging.destination-kind": "topic",
         "messaging.protocol": "jcsmp",
         "messaging.protocol_version": "1.0",
-        "messaging.url": os.environ['SOL_HOST']}
+        "messaging.url": os.environ['SOLACE_HOST']}
 )
 
 messaging_service = MessagingService.builder().from_properties(broker_props).build()
