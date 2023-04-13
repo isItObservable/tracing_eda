@@ -1,0 +1,65 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  name: oteld
+  labels:
+    app: opentelemetry
+spec:
+  mode: daemonset
+
+  image: otel/opentelemetry-collector-contrib:0.72.0
+  ports:
+  - name: prometheus
+    port: 9090
+    targetPort: 9090
+  env:
+    - name: DT_ENDPOINT
+      valueFrom:
+        secretKeyRef:
+          name: dynatrace
+          key: dynatrace_oltp_url
+    - name: DT_API_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: dynatrace
+          key: dt_api_token
+  config: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+          http:
+
+    processors:
+      batch:
+        send_batch_max_size: 1000
+        timeout: 30s
+        send_batch_size : 800
+
+
+      memory_limiter:
+        check_interval: 1s
+        limit_percentage: 70
+        spike_limit_percentage: 30
+
+
+    exporters:
+      logging:
+        verbosity: detailed
+      otlphttp:
+        endpoint: $DT_ENDPOINT/api/v2/otlp
+        headers:
+          Authorization: "Api-Token $DT_API_TOKEN"
+
+
+
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [memory_limiter,batch]
+          exporters: [otlphttp,logging]
+        metrics:
+          receivers: [otlp]
+          processors: [memory_limiter,batch]
+          exporters: [otlphttp]

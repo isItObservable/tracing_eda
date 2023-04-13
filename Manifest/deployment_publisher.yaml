@@ -1,0 +1,254 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: producer
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: publisher
+            product: solace
+            app.kubernetes.io/name: publisher-app
+            app.kubernetes.io/component: publisher
+        spec:
+          terminationGracePeriodSeconds: 5
+          restartPolicy: OnFailure
+          containers:
+            - name: solaceproducer
+              image: hrexed/soloacedemo-publisher:0.1
+              imagePullPolicy: Always
+              env:
+                - name: OTEL_SERVICE_NAME
+                  valueFrom:
+                    fieldRef:
+                      apiVersion: v1
+                      fieldPath: metadata.labels['app.kubernetes.io/component']
+                - name: OTEL_K8S_NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      apiVersion: v1
+                      fieldPath: metadata.namespace
+                - name: OTEL_K8S_NODE_NAME
+                  valueFrom:
+                    fieldRef:
+                      apiVersion: v1
+                      fieldPath: spec.nodeName
+                - name: OTEL_K8S_POD_NAME
+                  valueFrom:
+                    fieldRef:
+                      apiVersion: v1
+                      fieldPath: metadata.name
+                - name: OTEL_K8S_POD_UID
+                  valueFrom:
+                    fieldRef:
+                      apiVersion: v1
+                      fieldPath: metadata.uid
+                - name: SOLACE_HOST
+                  valueFrom:
+                    secretKeyRef:
+                      name: solace
+                      key: solace_host
+                - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                  value: http://oteld-collector.default.svc.cluster.local:4317
+                - name: SOLACE_VPN
+                  valueFrom:
+                    secretKeyRef:
+                      name: solace
+                      key: solace_vpn
+                - name: SOLACE_USERNAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: solace
+                      key: solace_username
+                - name: SOLACE_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: solace
+                      key: solace_password
+                - name: OTEL_RESOURCE_ATTRIBUTES
+                  value: service.name=$(OTEL_SERVICE_NAME),service.instance.id=$(OTEL_K8S_POD_UID),service.namespace=opentelemetry-demo,k8s.namespace.name=$(OTEL_K8S_NAMESPACE),k8s.node.name=$(OTEL_K8S_NODE_NAME),k8s.pod.name=$(OTEL_K8S_POD_NAME)
+              resources:
+                requests:
+                  cpu: 300m
+                  memory: 256Mi
+                limits:
+                  cpu: 500m
+                  memory: 512Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer-rest
+  labels:
+    app.kubernetes.io/name: consumer-rest
+    app: consumer
+    product: solaceA
+    app.kubernetes.io/component: todo
+    app.kubernetes.io/version: "0.0.1"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: consumer-rest
+      app: consumer
+      product: solace
+      app.kubernetes.io/component: consumerrest
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: consumer-rest
+        app: consumer
+        product: solace
+        app.kubernetes.io/component: consumerrest
+    spec:
+      containers:
+        - name: solacerestconsumer
+          image: hrexed/soloacedemo-consumer-rest:0.1
+          imagePullPolicy: Always
+          env:
+            - name: OTEL_SERVICE_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.labels['app.kubernetes.io/component']
+            - name: OTEL_K8S_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: OTEL_K8S_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
+            - name: OTEL_K8S_POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: OTEL_K8S_POD_UID
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.uid
+            - name: SOLACE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: solace
+                  key: solace_host
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://oteld-collector.default.svc.cluster.local:4317
+            - name: SOLACE_VPN
+              valueFrom:
+                secretKeyRef:
+                  name: solace
+                  key: solace_vpn
+            - name: SOLACE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: solace
+                  key: solace_username
+            - name: SOLACE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: solace
+                  key: solace_password
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: service.name=$(OTEL_SERVICE_NAME),service.instance.id=$(OTEL_K8S_POD_UID),service.namespace=opentelemetry-demo,k8s.namespace.name=$(OTEL_K8S_NAMESPACE),k8s.node.name=$(OTEL_K8S_NODE_NAME),k8s.pod.name=$(OTEL_K8S_POD_NAME)
+          resources:
+            requests:
+              cpu: 300m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer-database
+  labels:
+    app.kubernetes.io/name: consumer-database
+    app: consumer
+    product: solace
+    app.kubernetes.io/component: consumerdatabase
+    app.kubernetes.io/version: "0.0.1"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: consumer-database
+      app: consumer
+      product: solace
+      app.kubernetes.io/component: consumerdatabase
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: consumer-database
+        app: consumer
+        product: solace
+        app.kubernetes.io/component: consumerdatabase
+    spec:
+      containers:
+        - name: solacedatabaseconsumer
+          image: hrexed/soloacedemo-consumer-database:0.1
+          imagePullPolicy: Always
+          env:
+            - name: OTEL_SERVICE_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.labels['app.kubernetes.io/component']
+            - name: OTEL_K8S_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: OTEL_K8S_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
+            - name: OTEL_K8S_POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: OTEL_K8S_POD_UID
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.uid
+            - name: SOLACE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: solace
+                  key: solace_host
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://oteld-collector.default.svc.cluster.local:4317
+            - name: SOLACE_VPN
+              valueFrom:
+                secretKeyRef:
+                  name: solace
+                  key: solace_vpn
+            - name: SOLACE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: solace
+                  key: solace_username
+            - name: SOLACE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: solace
+                  key: solace_password
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: service.name=$(OTEL_SERVICE_NAME),service.instance.id=$(OTEL_K8S_POD_UID),service.namespace=opentelemetry-demo,k8s.namespace.name=$(OTEL_K8S_NAMESPACE),k8s.node.name=$(OTEL_K8S_NODE_NAME),k8s.pod.name=$(OTEL_K8S_POD_NAME)
+          resources:
+            requests:
+              cpu: 300m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+
