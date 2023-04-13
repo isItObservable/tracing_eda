@@ -55,7 +55,7 @@ gcloud container clusters create "${NAME}" --zone ${ZONE} --machine-type=e2-stan
 ### Dynatrace Tenant
 #### 1. Dynatrace Tenant - start a trial
 If you don't have any Dyntrace tenant , then i suggest to create a trial using the following link : [Dynatrace Trial](https://bit.ly/3KxWDvY)
-Once you have your Tenant save the Dynatrace tenant hostname in the variable `DT_TENANT_URL` (for example : https://dedededfrf.live.dynatrace.com)
+Once you have your Tenant save the Dynatrace tenant url in the variable `DT_TENANT_URL` (for example : https://dedededfrf.live.dynatrace.com)
 ```
 DT_TENANT_URL=<YOUR TENANT Host>
 ```
