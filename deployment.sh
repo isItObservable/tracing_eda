@@ -106,7 +106,7 @@ kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releas
 
 
 kubectl create secret generic dynatrace  --from-literal=dynatrace_oltp_url="$DTURL" --from-literal=dt_api_token="$DTTOKEN"
-kubectl apply -f manifest/openTelemetry-manifest_debut.yaml
+kubectl apply -f Manifest/openTelemetry-manifest_debut.yaml
 #Deploy the OpenTelemetry Collector
 
 #deploy demo application
