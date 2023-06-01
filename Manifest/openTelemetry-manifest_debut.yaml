@@ -29,6 +29,17 @@ spec:
         protocols:
           grpc:
           http:
+      solace:
+          broker: [solbroker:5672]
+          max_unacknowledged: 500
+          auth:
+            sasl_plain:
+              username: trace
+              password: tracesolace
+          queue: queue://#telemetry-solace_telemetry
+          tls:
+            insecure: true
+            insecure_skip_verify: true
 
     processors:
       batch:
@@ -56,7 +67,7 @@ spec:
     service:
       pipelines:
         traces:
-          receivers: [otlp]
+          receivers: [otlpm,solace]
           processors: [memory_limiter,batch]
           exporters: [otlphttp,logging]
         metrics:
