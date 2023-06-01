@@ -59,7 +59,7 @@ with use_span(parentSpan,end_on_exit=True):
                             .with_transport_security_strategy(transport_security)\
                             .with_authentication_strategy(BasicUserNamePassword.of(os.environ['SOLACE_USERNAME'], os.environ['SOLACE_PASSWORD']))\
                             .build()
-        messaging_service.connect_async()
+        messaging_service.connect()
 
     with tracer.start_as_current_span("Send message") as sendspan :
         trace_id = sendspan.get_span_context().trace_id
@@ -70,8 +70,8 @@ with use_span(parentSpan,end_on_exit=True):
         destination_name = Topic.of(outboundTopic)
 
         outbound_msg = messaging_service.message_builder() \
-            .with_property("trace_id", str(trace_id)) \
-            .with_property("span_id", str(span_id)) \
+            .with_trace_id(bytearray(trace_id.to_bytes(16, 'big'))) \
+            .with_span_id(bytearray(span_id.to_bytes(8, 'big'))) \
             .build("Hello World! This is a message published from Python!")
 
         direct_message_publish(messaging_service, destination_name, outbound_msg)

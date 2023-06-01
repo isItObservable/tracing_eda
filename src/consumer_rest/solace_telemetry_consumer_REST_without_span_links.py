@@ -20,10 +20,8 @@ import random
 class MessageHandlerImpl(MessageHandler):
     def on_message(self, message: 'InboundMessage'):
         tracer = trace.get_tracer(__name__)
-        traceid = str(message.get_property("trace_id"))
-        spanid = str(message.get_property("span_id"))
-        print("parentSpan trace_id on receiver side:" + traceid)
-        print("parentSpan span_id on receiver side:" + spanid)
+        traceid = int.from_bytes(message.get_trace_id(), 'big')
+        spanid = int.from_bytes(message.get_span_id(), 'big')
 
 
 
@@ -98,7 +96,7 @@ messaging_service = MessagingService.builder().from_properties(broker_props)\
                     .with_transport_security_strategy(transport_security)\
                     .with_authentication_strategy(BasicUserNamePassword.of(os.environ['SOLACE_USERNAME'], os.environ['SOLACE_PASSWORD']))\
                     .build()
-messaging_service.connect_async()
+messaging_service.connect()
 print( "connected to the service")
 trace.set_tracer_provider(TracerProvider())
 otlp_exporter = OTLPSpanExporter( insecure=True)

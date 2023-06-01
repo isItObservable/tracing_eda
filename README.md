@@ -108,6 +108,14 @@ Copy your certificate  `DigiCertGlobalRootCA.crt.pem` in:
 - `src/consumer_rest`
 - `src/publisher`
 
+### 5.Configure the Telemetry Profile in Solace
+
+```
+SOLACE_TELEMETRY_AMQP_URL=<YOUR Solace AMQP URL>
+SOLACE_TELMETRY_QUEUE=<YOUR SOLACE TElemetry queue name>
+SOLACE_TELEMETRY_USER=<YOUR SOLACE telemetry user>
+SOLACE_TELEMETRY_PASSWORD=<Your Solace telemetry password>
+```
 ### 4.Deploy most of the components
 The application will deploy the openTelemtry Solace Tutorial :
 ```shell

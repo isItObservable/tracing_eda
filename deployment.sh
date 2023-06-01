@@ -57,6 +57,22 @@ while [ $# -gt 0 ]; do
     SOLACEVPN="$2"
    shift 2
     ;;
+   --solaceamqpurl)
+    SOLACEAMQP="$2"
+   shift 2
+    ;;
+   --solacetelemetryqueue)
+    SOLACETELEMETRYQUEUE="$2"
+   shift 2
+    ;;
+   --solacetelemetryuser)
+    SOLACETELEMETRYUSER="$2"
+   shift 2
+    ;;
+   --solacetelemetrypwd)
+    SOLACETELEMETRYPWD="$2"
+   shift 2
+    ;;
   *)
     echo "Warning: skipping unsupported option: $1"
     shift
@@ -91,7 +107,22 @@ if [ -z "$SOLACEVPN" ]; then
   exit 1
 fi
 
-
+if [ -z "$SOLACEAMQP" ]; then
+  echo "Error: Solace amqp url not set!"
+  exit 1
+fi
+if [ -z "$SOLACETELEMETRYQUEUE" ]; then
+  echo "Error: Solace telemetry queue not set!"
+  exit 1
+fi
+if [ -z "$SOLACETELEMETRYUSER" ]; then
+  echo "Error: Solace telemetry username not set!"
+  exit 1
+fi
+if [ -z "$SOLACETELEMETRYPWD" ]; then
+  echo "Error: Solace telemetry password not set!"
+  exit 1
+fi
 
 
 #### Deploy the cert-manager
@@ -106,6 +137,7 @@ kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releas
 
 
 kubectl create secret generic dynatrace  --from-literal=dynatrace_oltp_url="$DTURL" --from-literal=dt_api_token="$DTTOKEN"
+kubectl create secret generic solace  --from-literal=solace_amqp_url="$SOLACEAMQP" --from-literal=solace_telemetry_user="$SOLACETELEMETRYUSER" --from-literal=solace_telemetry_password="$SOLACETELEMETRYPWD" --from-literal=solace_telemetry_queue="$SOLACETELEMETRYQUEUE"
 kubectl apply -f Manifest/openTelemetry-manifest_debut.yaml
 #Deploy the OpenTelemetry Collector
 

@@ -17,10 +17,9 @@ import random
 class MessageHandlerImpl(MessageHandler):
     def on_message(self, message: 'InboundMessage'):
         tracer = trace.get_tracer(__name__)
-        traceid = str(message.get_property("trace_id"))
-        spanid = str(message.get_property("span_id"))
-        print("parentSpan trace_id on receiver side:" + traceid)
-        print("parentSpan span_id on receiver side:" + spanid)
+        traceid = int.from_bytes(message.get_trace_id(), "big")
+        spanid = int.from_bytes(message.get_span_id(), "big")
+
 
         propagated_context = SpanContext(trace_id =int(traceid),span_id =int(spanid), is_remote=True,trace_flags=TraceFlags(0x01))
         #ctx =  set_span_in_context(NonRecordingSpan(propagated_context))
@@ -93,7 +92,7 @@ messaging_service = MessagingService.builder().from_properties(broker_props)\
                     .with_transport_security_strategy(transport_security)\
                     .with_authentication_strategy(BasicUserNamePassword.of(os.environ['SOLACE_USERNAME'], os.environ['SOLACE_PASSWORD']))\
                     .build()
-messaging_service.connect_async()
+messaging_service.connect()
 
 
 trace.set_tracer_provider(TracerProvider())

@@ -23,6 +23,26 @@ spec:
         secretKeyRef:
           name: dynatrace
           key: dt_api_token
+    - name: SOLACE_AMQP_URL
+        valueFrom:
+          secretKeyRef:
+            name: solace
+            key: solace_amqp_url
+    - name: SOLACE_TELEMETRY_USER
+        valueFrom:
+          secretKeyRef:
+            name: solace
+            key: solace_telemetry_user
+    - name: SOLACE_TELEMETRY_QUEUE
+        valueFrom:
+          secretKeyRef:
+            name: solace
+            key: solace_telemetry_queue
+    - name: SOLACE_TELEMETRY_PASS
+        valueFrom:
+          secretKeyRef:
+            name: solace
+            key: solace_telemetry_password
   config: |
     receivers:
       otlp:
@@ -30,15 +50,15 @@ spec:
           grpc:
           http:
       solace:
-          broker: [solbroker:5672]
+          broker: [$SOLACE_AMQP_URL]
           max_unacknowledged: 500
           auth:
             sasl_plain:
-              username: trace
-              password: tracesolace
-          queue: queue://#telemetry-solace_telemetry
+              username: $SOLACE_TELEMETRY_USER
+              password: $SOLACE_TELEMETRY_PASS
+          queue: queue://#$SOLACE_TELEMETRY_QUEUE
           tls:
-            insecure: true
+            insecure: false
             insecure_skip_verify: true
 
     processors:
