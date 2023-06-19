@@ -6,18 +6,20 @@ This repository contains the files utilized during the tutorial presented in the
 <p align="center"><img src="/image/opentelemetry-stacked-color.png" width="40%" alt="OpenTelemery Logo" /></p>
 using Solace PubSub:
 <p align="center"><img src="/image/solace.png" width="40%" alt="OpenTelemery Logo" /></p>
-What you will learn
-* How to use [Span Links](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/overview.md#links-between-spans)
-This repository showcase the usage of Fluentbit  with :
+
+What you will learn :
+* How to use  [Span Links](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/overview.md#links-between-spans)
+
+This repository showcase the usage of OpenTelemetry  with :
 * The modified version of Solace trace tutorial
 * The OpenTelemetry Operator
-* Nginx ingress controller
 * Dynatrace
 * Solace 
 
 
-We will send all Telemetry data produced  with python application.
-We will have 1 produce send mesages to Solace Pub/Sub and 2 consumers. 
+We will send all Telemetry data produced  from  python application to Dynatrace.
+We will have 1 producer sending messages to Solace Pub/Sub and 2 consumers. 
+
 Let's see 2 way of tracing this type of application.
 
 ## Prerequisite
@@ -156,7 +158,7 @@ In the Solace, click on Queues.
 You should see a queue create from our Telemetry Profile.
 <p align="center"><img src="/image/queeu_name.png" alt="Telemery profile username password " /></p>
 
-Note the name of your telemtry queue 
+Note the name of your telemetry queue 
 ```
 SOLACE_TELMETRY_QUEUE=<YOUR SOLACE TElemetry queue name>
 ```
