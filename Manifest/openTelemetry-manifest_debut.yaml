@@ -24,25 +24,25 @@ spec:
           name: dynatrace
           key: dt_api_token
     - name: SOLACE_AMQP_URL
-        valueFrom:
-          secretKeyRef:
-            name: solace
-            key: solace_amqp_url
+      valueFrom:
+        secretKeyRef:
+          name: solace
+          key: solace_amqp_url
     - name: SOLACE_TELEMETRY_USER
-        valueFrom:
-          secretKeyRef:
-            name: solace
-            key: solace_telemetry_user
+      valueFrom:
+        secretKeyRef:
+          name: solace
+          key: solace_telemetry_user
     - name: SOLACE_TELEMETRY_QUEUE
-        valueFrom:
-          secretKeyRef:
-            name: solace
-            key: solace_telemetry_queue
+      valueFrom:
+        secretKeyRef:
+          name: solace
+          key: solace_telemetry_queue
     - name: SOLACE_TELEMETRY_PASS
-        valueFrom:
-          secretKeyRef:
-            name: solace
-            key: solace_telemetry_password
+      valueFrom:
+        secretKeyRef:
+          name: solace
+          key: solace_telemetry_password
   config: |
     receivers:
       otlp:
@@ -87,7 +87,7 @@ spec:
     service:
       pipelines:
         traces:
-          receivers: [otlpm,solace]
+          receivers: [otlp,solace]
           processors: [memory_limiter,batch]
           exporters: [otlphttp,logging]
         metrics:
