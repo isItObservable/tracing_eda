@@ -100,6 +100,66 @@ SOLACE_PASSWORD=<Your Solace Password>
 From the Connect tab, download the TrustStore ( .pem) and name it: `DigiCertGlobalRootCA.crt.pem`
 <p align="center"><img src="/image/trustore.png" width="40%" alt="Solace connect" /></p>
 
+Make sure to copy/paste the certificate in the following folders:
+* src/consumer_rest
+* src/consumer_database
+* src/publisher
+
+#### 3. Create your docker containers
+
+##### Publisher
+Create a account on dockerhub
+```
+DOCKER_HUB_ACCOUNTNAME= <YOUR ACCOUNTNAME>
+```
+run the command :
+```shell
+cd src/publisher
+docker build . -t $DOCKER_HUB_ACCOUNTNAME/soloacedemo-publisher:0.1
+```
+once the container created, publish it in docker hub
+```shell
+docker push $DOCKER_HUB_ACCOUNTNAME/soloacedemo-publisher:0.1
+```
+
+##### Consumer Rest
+
+in `/src/consumer_rest`, modify the followin line :
+`COPY ./solace_telemetry_consumer_REST.py ./solace_telemetry_consumer_REST.py`
+by :
+`COPY ./solace_telemetry_consumer_REST_without_span_links.py ./solace_telemetry_consumer_REST.py`
+
+then build the container :
+```shell
+docker build . -t $DOCKER_HUB_ACCOUNTNAME/soloacedemo-consumer-rest:0.1
+```
+once the container created, publish it in docker hub
+```shell
+docker push $DOCKER_HUB_ACCOUNTNAME/soloacedemo-consumer-rest:0.1
+```
+##### Consumer Database
+
+in `/src/consumer_rest`, modify the followin line :
+`COPY ./solace_telemetry_consumer_Database.py ./solace_telemetry_consumer_Database.py`
+by :
+`COPY ./solace_telemetry_consumer_Database_without_spanlinks.py ./solace_telemetry_consumer_Database.py`
+
+then build the container :
+```shell
+docker build . -t $DOCKER_HUB_ACCOUNTNAME/soloacedemo-consumer-database:0.1
+```
+once the container created, publish it in docker hub
+```shell
+docker push $DOCKER_HUB_ACCOUNTNAME/soloacedemo-consumer-database:0.1
+```
+
+
+##### Modify the deployment file of the demo application to use your containers
+Modify `Manifest/deployment_publisher.yaml`
+Replace the various Deployment and CronJob using the image pointing to my docker hub account: `hrexed`
+replace it with your own docker hub.
+
+
 ### 3.Clone the Github Repository
 ```shell
 https://github.com/isItObservable/tracing_eda
@@ -177,10 +237,48 @@ The application will deploy the openTelemtry Solace Tutorial :
 chmod 777 deployment.sh
 ./deployment.sh  --solaceusername "${SOLACE_USERNAME}" --dthost "${DT_TENANT_URL}" --dttoken "${DATA_INGEST_TOKEN}" --solacepassword "${SOLACE_PASSWORD}" --solacehost "${SOLACE_HOST}"  --solacevpn "${SOLACE_VPN}" --solaceamqpurl "${SOLACE_TELEMETRY_AMQP_URL}" --solacetelemetryqueue "${SOLACE_TELMETRY_QUEUE}" --solacetelemetryuser "${SOLACE_TELEMETRY_USER}" --solacetelemetrypwd "${SOLACE_TELEMETRY_PASSWORD}"
 ```
-### 5.Look at the produced traces 
-
-### 6.Let's look at collector pipeline
 
 
-### 6. Let's now use SpanLinks
 
+### 5. Let's modify the application to use Span Links
+
+
+##### Consumer Rest
+
+in `/src/consumer_rest`, modify the followin line :
+`COPY ./solace_telemetry_consumer_REST_without_span_links.py ./solace_telemetry_consumer_REST.py`
+by :
+`COPY ./solace_telemetry_consumer_REST.py ./solace_telemetry_consumer_REST.py`
+
+then build the container :
+```shell
+docker build . -t $DOCKER_HUB_ACCOUNTNAME/soloacedemo-consumer-rest:0.2
+```
+once the container created, publish it in docker hub
+```shell
+docker push $DOCKER_HUB_ACCOUNTNAME/soloacedemo-consumer-rest:0.2
+```
+##### Consumer Database
+
+in `/src/consumer_rest`, modify the followin line :
+`COPY ./solace_telemetry_consumer_Database_without_spanlinks.py ./solace_telemetry_consumer_Database.py`
+by :
+`COPY ./solace_telemetry_consumer_Database.py ./solace_telemetry_consumer_Database.py`
+
+then build the container :
+```shell
+docker build . -t $DOCKER_HUB_ACCOUNTNAME/soloacedemo-consumer-database:0.2
+```
+once the container created, publish it in docker hub
+```shell
+docker push $DOCKER_HUB_ACCOUNTNAME/soloacedemo-consumer-database:0.2
+```
+##### Update the deployment files
+
+Modify  `Manifest/deployment_publisher.yaml` 
+Make sure to update the 2 deployments of the consumer to use the image with the tag `0.2` ( the new version of the containers using span links)
+
+Now we can deploy the modified deployment: 
+```shell
+kubectl apply -f Manifest/deployment_publisher.yaml -n eda
+```
