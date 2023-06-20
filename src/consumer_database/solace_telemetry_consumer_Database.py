@@ -6,7 +6,7 @@ from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExport
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.context import attach, detach
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
-from opentelemetry.trace import SpanContext,SpanKind,TraceFlags,set_span_in_context,use_span,NonRecordingSpan
+from opentelemetry.trace import SpanContext,SpanKind,TraceFlags,set_span_in_context,use_span,NonRecordingSpan, Link
 from solace.messaging.messaging_service import MessagingService
 from solace.messaging.resources.topic_subscription import TopicSubscription
 from solace.messaging.receiver.message_receiver import MessageHandler
